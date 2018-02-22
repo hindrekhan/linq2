@@ -36,13 +36,15 @@ namespace linq2
         //3
         static void PrintLetters(string data)
         {
-            Character[] characters = new Character[256];
+            Console.WriteLine("Word frequency:");
 
-            for (int i = 0; i < 256; i++)
+            Character[] characters = new Character[94];
+
+            for (int i = 33; i < 126; i++)
             {
-                characters[i].character = Convert.ToChar(i);
-                characters[i].count = (from letter in data.ToList()
-                                       where letter == Convert.ToChar(i)
+                characters[i - 33].character = Convert.ToChar(i);
+                characters[i - 33].count = (from letter in data.ToList()
+                                       where Char.ToUpper(letter) == Convert.ToChar(i)
                                        select letter).Count();
             }
 
@@ -50,7 +52,7 @@ namespace linq2
 
             for (int i = 0; i < a.Count(); i++)
             {
-                Console.WriteLine(a.ElementAt(i).character + ": " + a.ElementAt(i).count);
+                Console.WriteLine("'" +a.ElementAt(i).character + "': " + a.ElementAt(i).count);
             }
 
         }
@@ -65,21 +67,31 @@ namespace linq2
                 Console.WriteLine(l.ElementAt(i));
         }
 
+        static void Pause()
+        {
+            Console.WriteLine("Press a key to continue");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
         static void Main(string[] args)
         {
             string data = System.IO.File.ReadAllText("../../tekst.txt");
 
             //1
             PrintWordCount(data);
+            Pause();
 
             //2
-            //PrintDifferentLetters(data);
+            PrintDifferentLetters(data);
+            Pause();
 
             //3
-            //PrintLetters(data);
+            PrintLetters(data);
+            Pause();
 
             //4
-           // PrintUniqueWords(data);
+            PrintUniqueWords(data);
 
             Console.ReadLine();
         }
