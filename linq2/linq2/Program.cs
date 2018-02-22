@@ -17,7 +17,7 @@ namespace linq2
         //1
         static void PrintWordCount(string data)
         {
-            int count = (from word in data.Substring(0)
+            int count = (from word in data.Split()
                          select word).Count();
 
             Console.WriteLine("Number of words: " + count);
@@ -53,10 +53,6 @@ namespace linq2
                 Console.WriteLine(a.ElementAt(i).character + ": " + a.ElementAt(i).count);
             }
 
-            /*foreach(Character c in characters)
-            {
-                Console.WriteLine(c.character + ": " + c.count);
-            }*/
         }
 
         //4
@@ -67,7 +63,6 @@ namespace linq2
 
             for (int i = 0; i < l.Count(); i++)
                 Console.WriteLine(l.ElementAt(i));
-
         }
 
         static void Main(string[] args)
@@ -75,13 +70,13 @@ namespace linq2
             string data = System.IO.File.ReadAllText("../../tekst.txt");
 
             //1
-            //PrintWordCount(data);
+            PrintWordCount(data);
 
             //2
             //PrintDifferentLetters(data);
 
             //3
-            PrintLetters(data);
+            //PrintLetters(data);
 
             //4
            // PrintUniqueWords(data);
